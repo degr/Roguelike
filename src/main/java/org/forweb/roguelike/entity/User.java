@@ -1,11 +1,13 @@
 package org.forweb.roguelike.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by Ror on 03.01.2016.
  */
 @Entity
+@Table(name = "user")
 public class User extends AbstractEntity {
     private String email;
     private String password;
