@@ -3,7 +3,7 @@ package org.forweb.roguelike.factory;
 import org.forweb.roguelike.map.Cell;
 import org.forweb.roguelike.map.Floor;
 import org.forweb.roguelike.map.WorldMap;
-import org.forweb.roguelike.map.map.object.Tree;
+import org.forweb.roguelike.map.object.Tree;
 
 import java.util.HashMap;
 import java.util.Map;
