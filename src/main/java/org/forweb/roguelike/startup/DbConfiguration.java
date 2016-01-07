@@ -23,11 +23,10 @@ import java.util.Properties;
  * Created by rsmirnou on 9/21/2015. 02
  */
 @Configuration
-@EnableJpaRepositories
+@EnableJpaRepositories(AppInitializer.BASE_PACKAGE + ".dao")
 public class DbConfiguration {
 
-    private static final String DEFAULT_PACKAGE = "com.scnsoft.latticepro";
-    public static final String PACKAGE_ENTITY = DEFAULT_PACKAGE + ".entity";
+    public static final String PACKAGE_ENTITY = AppInitializer.BASE_PACKAGE + ".entity";
     private static final boolean AUTOCOMMIT = true;
 
     @Value("${jdbc.driver.name}")
@@ -131,7 +130,7 @@ public class DbConfiguration {
         return dataSource;
     }
 
-    @Bean(name = Initializer.SESSION_FACTORY)
+    @Bean(name = AppInitializer.SESSION_FACTORY)
     public SessionFactory sessionFactory(org.hibernate.cfg.Configuration configuration, ServiceRegistry serviceRegistry) {
         return configuration.buildSessionFactory(serviceRegistry);
     }
@@ -163,7 +162,7 @@ public class DbConfiguration {
         return out;
     }
 
-    @Bean(name = Initializer.ENTITY_MANAGER_FACTORY_BEAN)
+    @Bean(name = AppInitializer.ENTITY_MANAGER_FACTORY_BEAN)
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(Properties hibernateProperties, DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setPersistenceUnitName("persistenceUnit");

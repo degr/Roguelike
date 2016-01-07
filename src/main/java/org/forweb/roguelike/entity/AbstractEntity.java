@@ -11,6 +11,6 @@ import javax.persistence.MappedSuperclass;
  * Created by Ror on 03.01.2016.
  */
 @MappedSuperclass
-public abstract class AbstractEntity extends AbstractPersistable {
+public abstract class AbstractEntity extends AbstractPersistable<Integer> {
     
 }

@@ -1,7 +1,5 @@
 package org.forweb.roguelike.startup;
 
-
-import org.forweb.roguelike.filter.AuthorizationFilter;
 import org.springframework.orm.hibernate4.support.OpenSessionInViewFilter;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.web.WebApplicationInitializer;
@@ -14,9 +12,10 @@ import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
-public class Initializer implements WebApplicationInitializer {
+public class AppInitializer implements WebApplicationInitializer {
 
 
+    public static final String BASE_PACKAGE = "org.forweb.roguelike";
     public static final String SESSION_FACTORY = "sessionFactory";
     public static final String ENTITY_MANAGER_FACTORY_BEAN = "entityManagerFactory";
 
@@ -29,7 +28,7 @@ public class Initializer implements WebApplicationInitializer {
 
         container.addListener(new ContextLoaderListener(rootContext));
 
-        addServlet(new DispatcherServlet(rootContext), "dispatcher", "/*", container);
+        addServlet(new DispatcherServlet(rootContext), "dispatcher", "/server/*", container);
 
 
         /*container.addFilter("openSessionInViewFilter", openSessionInViewFilter())

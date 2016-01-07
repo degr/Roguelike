@@ -35,11 +35,10 @@ import java.util.List;
  */
 @Configuration
 @ComponentScan(basePackages = {
-        "org.forweb.roguelike.startup",
-        "org.forweb.roguelike.controller",
-        "org.forweb.roguelike.dao",
-        "org.forweb.roguelike.service",
-        "org.forweb.roguelike.entity"
+        AppInitializer.BASE_PACKAGE + ".startup",
+        AppInitializer.BASE_PACKAGE + ".controller",
+        AppInitializer.BASE_PACKAGE + ".service",
+        AppInitializer.BASE_PACKAGE + ".entity",
 })
 @PropertySource(value = {
         "classpath:META-INF/config.properties",
