@@ -1,30 +1,70 @@
 package org.forweb.roguelike.startup;
 
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration.Dynamic;
-
+import org.forweb.roguelike.filter.AuthorizationFilter;
+import org.springframework.orm.hibernate4.support.OpenSessionInViewFilter;
+import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
+
+import javax.servlet.Servlet;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRegistration;
 
 public class Initializer implements WebApplicationInitializer {
 
-    private static final String DISPATCHER_SERVLET_NAME = "dispatcher";
+
+    public static final String SESSION_FACTORY = "sessionFactory";
+    public static final String ENTITY_MANAGER_FACTORY_BEAN = "entityManagerFactory";
 
     @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(WebAppConfig.class);
-        ctx.register(SecurityConfig.class);
-        servletContext.addListener(new ContextLoaderListener(ctx));
+    public void onStartup(ServletContext container) {
 
-        ctx.setServletContext(servletContext);
 
-        Dynamic servlet = servletContext.addServlet(DISPATCHER_SERVLET_NAME, new DispatcherServlet(ctx));
-        servlet.addMapping("/");
-        servlet.setLoadOnStartup(1);
+        AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
+        rootContext.register(SpringConfiguration.class);
+
+        container.addListener(new ContextLoaderListener(rootContext));
+
+        addServlet(new DispatcherServlet(rootContext), "dispatcher", "/*", container);
+
+
+        /*container.addFilter("openSessionInViewFilter", openSessionInViewFilter())
+                .addMappingForUrlPatterns(null, false, "/*");
+        container.addFilter("openEntityManagerInViewFilter", openEntityManagerInViewFilter())
+                .addMappingForUrlPatterns(null, false, "/*");
+        container.addFilter("authorizationFilter", new AuthorizationFilter())
+                .addMappingForUrlPatterns(null, false, "/*");
+        container.addFilter("encodingFilter", getCharacterEncodingFilter())
+                .addMappingForUrlPatterns(null, false, "/*");*/
     }
+
+    private CharacterEncodingFilter getCharacterEncodingFilter() {
+        CharacterEncodingFilter out = new CharacterEncodingFilter();
+        out.setEncoding("UTF-8");
+        out.setForceEncoding(false);
+        return out;
+    }
+
+    private void addServlet(Servlet servlet, String servletName, String mapping, ServletContext container) {
+        ServletRegistration.Dynamic dynamic = container.addServlet(servletName, servlet);
+        dynamic.setLoadOnStartup(1);
+        dynamic.addMapping(mapping);
+    }
+
+    private OpenSessionInViewFilter openSessionInViewFilter() {
+        OpenSessionInViewFilter filter = new OpenSessionInViewFilter();
+        filter.setSessionFactoryBeanName(SESSION_FACTORY);
+        return filter;
+    }
+
+    private OpenEntityManagerInViewFilter openEntityManagerInViewFilter() {
+        OpenEntityManagerInViewFilter out = new OpenEntityManagerInViewFilter();
+        out.setEntityManagerFactoryBeanName(ENTITY_MANAGER_FACTORY_BEAN);
+        return out;
+    }
+
 }
