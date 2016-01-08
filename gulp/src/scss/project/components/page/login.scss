@@ -1,0 +1,51 @@
+.login-bg {
+  background: rgba(255,255,255,0.4);
+}
+.login-box, .register-box {
+  width: 460px;
+  $padding: 10px;
+  margin: 15% auto;
+  font-size: $font-size-large;
+
+  .login-logo{
+    display: block;
+    margin: 0 auto 27px auto;
+    width: 100%;
+    margin-bottom: $common-margin;
+  }
+
+  .login-error {
+      color: $red;
+  }
+
+  .login-links {
+      font-size: $font-size-small;
+      margin-top: 8px;
+      display: flex;
+      a {
+          flex: 1;
+      }
+      a:last-child {
+          text-align: right;
+      }
+  }
+
+  .login-form {
+      .simple-form-label {
+          padding-top: 6px;
+      }
+      .simple-form-field {
+          padding-top: 18px;
+      }
+      .simple-form-input {
+          width: 100%
+      }
+  }
+
+  .submit {
+      height: 40px;
+      display: block;
+      width: 100%;
+      margin-top: 28px;
+  }
+}

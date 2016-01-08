@@ -1,0 +1,59 @@
+.grid-panel{
+  margin-bottom: 15px;
+  padding-top: 15px;
+  > *{
+    margin-left: 0;
+    @media #{$laptop} {
+      margin-left: 5px;
+      display: block;
+      float: left;
+      &.clearfix{
+        float: none;
+      }
+    }
+  }
+}
+.grid-wrapper{
+  .columns-control{
+    float: left;
+    > * {
+      float: left;
+      margin: 0 5px 0 0;
+    }
+  }
+}
+
+.react-datagrid{
+  .formfield-holder-checkbox{
+    margin: 0;
+  }
+  .z-column-header {
+    .select-all{
+      margin: 0;
+    }
+  }
+/*
+  .z-content-wrapper{
+    height: 200px;
+    overflow: auto;
+  }*/
+  .z-vertical-scrollbar{
+    display: none;
+  }
+  .z-content-wrapper-fix{
+    max-width: 100% !important;
+  }
+  .z-header{
+    padding-right: 0 !important;
+  }
+  .select-all {
+    float: left;
+    label {
+      margin-bottom: 0;
+    }
+    input{
+      margin-top: 0;
+    }
+  }
+}
+  

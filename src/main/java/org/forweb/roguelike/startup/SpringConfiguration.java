@@ -1,9 +1,5 @@
 package org.forweb.roguelike.startup;
 
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.GsonBuilder;
-import org.forweb.roguelike.utils.DateConverter;
-import org.forweb.roguelike.utils.JsonExclusionStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.GsonHttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -27,6 +23,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.annotation.PostConstruct;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -76,9 +73,9 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter {
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         for (int i = 0; i < converters.size(); i++) {
             HttpMessageConverter conv = converters.get(i);
-            if (conv.getClass().equals(GsonHttpMessageConverter.class)) {
+            /*if (conv.getClass().equals(GsonHttpMessageConverter.class)) {
                 converters.set(i, gsonHttpMessageConverter());
-            }
+            }*/
         }
     }
 
@@ -101,22 +98,13 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Bean(name = "gsonBuilder")
-    public GsonBuilder gsonBuilder() {
-        ExclusionStrategy strategy = new JsonExclusionStrategy();
-        return new GsonBuilder()
-                .enableComplexMapKeySerialization()
-                .addSerializationExclusionStrategy(strategy)
-                .addDeserializationExclusionStrategy(strategy)
-                .registerTypeAdapter(Date.class, new DateConverter.Serializer());
-    }
 
 
-    @Bean(name = "gsonHttpMessageConverter")
-    public GsonHttpMessageConverter gsonHttpMessageConverter() {
-        GsonHttpMessageConverter converter = new GsonHttpMessageConverter();
-        converter.setGson(gsonBuilder().create());
-        return converter;
+    @Bean(name="jacksonBuilder")
+    public Jackson2ObjectMapperBuilder jacksonBuilder() {
+        Jackson2ObjectMapperBuilder b = new Jackson2ObjectMapperBuilder();
+        b.indentOutput(true).dateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+        return b;
     }
 
     @Bean(name = "validator")

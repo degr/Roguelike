@@ -1,0 +1,44 @@
+$common-margin: 15px;
+$btn-border-radius-base: 0 !default;
+
+@import "bootstrap/_variables";
+$phone: '(min-width:' + $screen-xs+')';
+$tablet: '(min-width:' + $screen-sm +')';
+$laptop: '(min-width:' + $screen-md +')';
+$pc: '(min-width:' + $screen-lg + ')';
+
+$icon-font-path: "../fonts/bootstrap/";
+
+$white: white;
+$black: #1b1b1b;
+$red: #CE2B2B;
+$theme-color: #157C8E;
+$theme-color-light: #2C9FB3;
+$green: #8FC95A;
+$blue: #2a87c9;
+$yellow: #FFC33D;
+
+$color-theme-selection: #C7EDF4;
+
+//override bootstrap colors
+$gray-base:              $black;
+$gray-darker:            lighten($gray-base, 13.5%) !default; // #222
+$gray-dark:              lighten($gray-base, 20%) !default;   // #333
+$gray:                   #929292; // #555
+$gray-light:             lighten($gray-base, 46.7%) !default; // #777
+$gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
+
+$brand-primary:         $theme-color;
+
+$btn-primary-color:              #fff;
+$btn-primary-bg:                 $theme-color-light;
+$btn-primary-border:             darken($theme-color-light, 5%);
+
+$brand-success:         $green;
+$brand-info:            #5bc0de !default;
+$brand-warning:         $yellow;
+$brand-danger:          $red;
+
+
+$container-large-desktop: 1200px;
+$container-lg: 1200px;
