@@ -23,6 +23,7 @@ public class UserController extends AbstractRestController<User, UserDao, UserSe
         if (thisUser == null) {
             return null;
         }
+        UserUtils.setUserId(thisUser.getId());
         return thisUser.getPassword().equals(item.getPassword()) ? thisUser : null;
     }
 
