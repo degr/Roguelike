@@ -1,0 +1,36 @@
+.modal-notification {
+  @mixin this-alert-variant($background, $border, $text-color) {
+    background-color: $background !important;
+    border-color: $border !important;;
+    color: $text-color !important;;
+
+    hr {
+      border-top-color: darken($border, 5%) !important;;
+    }
+    .alert-link {
+      color: darken($text-color, 10%) !important;;
+    }
+  }
+
+  
+  &.alert-success {
+    @include this-alert-variant($alert-success-bg, $alert-success-border, $alert-success-text);
+  }
+
+  &.alert-info {
+    @include this-alert-variant($alert-info-bg, $alert-info-border, $alert-info-text);
+  }
+
+  &.alert-warning {
+    @include this-alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text);
+  }
+
+  &.alert-danger {
+    @include this-alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
+  }
+  .icon-close{
+    position: absolute;
+    top: 3px;
+    right: 3px;
+  }
+}

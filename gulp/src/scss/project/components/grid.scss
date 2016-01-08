@@ -1,0 +1,68 @@
+.grid-wrapper{
+  margin-bottom: 40px;//fix control panel absolute layout
+  .z-header .z-column-header.z-cell {
+    border-left: none;
+    height: 31px;
+    &:not(.z-first){
+      border-left: none;
+    }
+  }
+  .z-header-wrapper, .z-over,  .react-datagrid .z-column-header.z-over{
+    background: $theme-color-light;
+  }
+
+  .z-content{
+    padding: 7px 5px !important;
+  }
+  &.z-style-alternate .z-row {
+    &.z-odd {
+      background: $gray-lighter;
+    }
+    &.z-over, .z-over.z-odd{
+      background: $theme-color-light;
+    }
+  }
+ 
+  .z-row{
+    height: auto !important;
+  }
+  .top-control, .columns-control{
+    margin-bottom: 10px;
+  }
+  
+  svg[name="gotoLast"],   svg[name="gotoFirst"], svg[name="refresh"] {
+    display: none;
+  }
+  .react-datagrid-pagination-toolbar{
+    @media #{$tablet} {
+      width: 70% !important;
+      bottom: -41px;
+      right: 0;
+      position: absolute;  
+    }
+    > :first-child{
+     min-width: 323px !important;
+    }
+  }
+  .react-datagrid {
+    margin-bottom: 6px;
+    .z-row .z-cell .z-content {
+      white-space: normal;
+    }
+  }
+  .controls{
+    > *{
+      margin-left: 10px;
+      &:first-child{
+        margin-left: 0;
+      }
+    }
+    .icon{
+      margin-right: 5px;
+    }
+  }
+  /*ie fix*/
+  .z-inner{
+    flex-basis: auto;
+  }
+}

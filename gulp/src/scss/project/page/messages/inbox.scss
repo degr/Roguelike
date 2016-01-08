@@ -1,0 +1,51 @@
+.page-inbox {
+  [class^="priority-"] {
+    /*border: 1px solid gray;*/
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    background: $green;
+  }
+  .priority-N{
+    background: $green;
+  }
+
+  .priority-U{
+    background: $brand-danger;
+  }
+  .priority-M{
+    background: $yellow;
+  }
+  a.btn{
+    display: block;
+    margin-bottom: 5px;
+  }
+  @media #{$laptop} {
+    a.btn {
+      display: inline-block;
+    }
+  }
+  .top-control{
+    position: relative;
+  }
+  .description {
+    dl > * {
+      float: left;
+    }
+    dt{
+      clear: left;
+    }
+    @media #{$laptop} {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      dd {
+        margin-left: 5px;
+      }
+      dt {
+        margin-left: 15px;
+        clear: none;
+      }
+    }
+  }
+}

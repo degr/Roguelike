@@ -1,0 +1,131 @@
+
+$menu-background-color: #40464B;
+
+
+.block-header{
+  > *, .navbar > * {
+    display: block;
+  }
+  .navbar {
+    margin-bottom: 0;
+  }
+  .hidesidebar{
+    width: 75px;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 14px;
+  }
+}
+
+.header-menu-wrapper{
+  text-align: center;
+}
+.header-menu{
+  padding-top: 36px;
+  .logo{
+    float: left;
+    height: 46px;
+    overflow: hidden;
+  }
+  .control-menu{
+    float: right;
+  }
+  .head-menu {
+    border-bottom: 3px solid $red;
+  }
+}
+.main-menu{
+  $hover-color: #4B5359;
+  $right-arrow: "\25B8";
+  $down-arrow: "\25BE";
+  background: $gray-lighter;//if gradient not supported
+  background: linear-gradient($white, $gray-lighter);
+  text-align: center;
+  min-height: 88px;
+  padding: 5px 0;
+  @media #{$pc} {
+    padding: 23px 0;
+  }
+  li {
+    display: inline-block;
+    padding: 9px 0 13px;
+    position: relative;
+    
+    
+    &:hover{
+      background-color: $color-theme-selection;
+    }
+    /*&:first-child:before{
+      display: none;
+    } */
+    &:before{
+      content: ' ';
+      width: 2px;
+      height: 16px;
+      background: $gray;
+      position: absolute;
+      left: -1px;
+      top: 12px;
+      display: block;
+    }
+    &:first-child:before{
+      display: none;
+    }
+    &.active{
+      a{
+        color: $theme-color;
+      }
+      &:before, + li:before{
+        background: transparent;
+      }
+    }
+    
+  }
+  
+  a {
+    padding: 0 15px;
+    color: $theme-color;
+  }
+  &, & a{
+    color: #999;
+    text-decoration: none;
+  }
+}
+
+.block-sidebar:before {
+  @media #{$laptop} {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 9px;
+    right: 0;
+    border-left: 1px solid gray;
+    height: 100%;
+    height: calc(100% - 10px);
+  }
+}
+
+.submenu-wrapper{
+  margin-top: 9px;
+  padding-top: 10px;
+  .submenu-list {
+    > li {
+      $margin: 14px;
+      min-height: 40px;
+      padding: 10px 0 10px $margin;
+      a{
+        text-decoration: none;
+      }
+      &.active, &.active a, &:hover, &:hover a {
+        background: $color-theme-selection;
+      }
+    }
+  }
+  .icon-wrapper{
+    width: 18px;
+    margin-right: 24px;
+    position: relative;
+    display: inline-block;
+    top: -3px;
+  }
+}

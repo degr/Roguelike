@@ -1,0 +1,30 @@
+.control-panel{
+  padding-top: 15px;
+  margin-bottom: 9px;
+  /*.container-fluid{
+    padding-left: 15px;
+  }*/
+  .items {
+    
+  }
+  .items > *{
+    float: left;
+    @media #{$tablet} {
+      margin-left: 10px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+  h1 {
+    margin: 0;
+    color: $red;
+    @include _font(24);
+  }
+}
+.inline {
+  p.navbar-btn{
+    float: left;
+    margin: 0 5px;
+  }
+}

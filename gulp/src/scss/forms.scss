@@ -1,0 +1,125 @@
+.options-holder {
+  label{
+    display: block;
+  }
+}
+textarea{
+  resize: vertical;
+}
+.formfield-holder{
+  margin-bottom: $common-margin;
+  .formfield-radio{
+    margin-bottom: 0;
+  }
+  > .error {
+    color: red;
+  }
+  input[type="radio"], input[type="checkbox"] {
+    margin-right: 4px;
+  }
+  
+  .time-input {
+    text-align: left;
+    position: relative;
+    .rc-calendar-time-panel{
+      bottom: auto;
+      right: auto;
+      border: 1px solid rgba(0,0,0,0.2);
+      border-radius: 5px;
+      width: 250px;
+    }
+    .rc-calendar-time-input {
+      padding: 4px 0;
+      text-align: center;
+    }
+  }
+}
+.formfield-input > * {
+  width: 100%;
+}
+
+.formfield-radio.inline {
+  .formfield-label {
+    float: left;
+    margin-right: 20px;
+    top: 2px;
+    position: relative;
+  }
+  .formfield-input > * {
+    float: left;
+    margin-left: 10px;
+    width: auto;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+.formfield-holder  {
+  input[type="checkbox"] {
+    height: auto;
+    width: auto;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  &.required > .formfield-label label:after {
+    content: '*';
+    color: red;
+    margin-left: 4px;
+  }
+}
+
+.formfield-checkbox, .formfield-submit, .formfield-holder > .error{
+  &.no-margin{
+    margin: 0;
+  }
+}
+input[type="checkbox"]{
+  display:none !important;
+}
+input[type="checkbox"] + span {
+  padding-left: 20px;
+  display:inline-block;
+  min-width:16px;
+  min-height:16px;
+  vertical-align:middle;
+  background:url(../images/form/checkbox-unchecked.png) 0 2px no-repeat;
+  cursor:pointer;
+}
+input[type="checkbox"]:checked + span{
+  background:url(../images/form/checkbox-checked.png) 0 2px no-repeat;
+}
+form{
+  .control {
+    > * {
+      margin-left: 15px;
+      &:first-child{
+        margin-left: 0;
+      }
+    }
+    &.right {
+      text-align: right;
+    }
+  }
+  .password-strength {
+    .control {
+      float: right;
+    }
+    .meter {
+      margin-left: 5px;
+      font-weight: bold;
+      &.extreme {
+        color: $blue
+      }
+      &.strong {
+        color: $green;
+      }
+      &.good {
+        color: $yellow;
+      }
+      &.weak {
+        color: $red;
+      }
+    }
+  }
+}

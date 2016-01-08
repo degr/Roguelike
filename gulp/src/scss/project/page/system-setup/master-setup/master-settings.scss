@@ -1,0 +1,21 @@
+.settings-group {
+	.application {
+		& img {
+			display: block;
+			margin: 0 auto 0 auto;
+		}
+		& p {
+			text-align: center;
+		}
+		&:hover {
+			background: rgba(0, 0, 255, 0.5);
+		}
+		cursor: pointer;
+		display: inline-block;
+		border: solid 1px black;
+		width: 100px;
+		height: 100px;
+		vertical-align: top;
+		margin: 5px;
+	}
+}

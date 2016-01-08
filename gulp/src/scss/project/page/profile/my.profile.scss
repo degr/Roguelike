@@ -1,0 +1,17 @@
+.my-profile-page{
+  .general-information-list, .employer-detail-list{
+    > * {
+      float: left;
+      width: 40%;
+    }
+    > dt {
+      clear: left;
+    }
+  }
+  .mobile-phone{
+    width: auto;
+  }
+  .page-wrapper{
+    position: relative;
+  }
+}

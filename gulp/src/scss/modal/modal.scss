@@ -1,0 +1,37 @@
+.modal-window{
+  &, &.modal-notification {
+    width: 100% !important;
+    margin-left: 0 !important;
+    left: 0 !important;
+    top: 0 !important;
+  }
+  
+  @media #{$tablet} {
+    top: 10px !important;
+    left: 50% !important;
+    margin-left: -$screen-xs / 2 !important;
+    width: $screen-xs !important;
+    &.medium{
+      $width: $screen-sm - 40px;
+      margin-left: -$width / 2 !important;
+      width: $width !important;
+    }
+  }
+  @media #{$laptop} {
+    top: 40px !important;
+
+    &.large{
+      $width: $screen-md - 60px;
+      margin-left: -$width / 2 !important;
+      width: $width !important;
+    }
+  }
+  .modal-notification{
+    top: 15px !important;
+    right: 15px !important;
+  }
+
+  .control-panel{
+    padding: 0;
+  }
+}

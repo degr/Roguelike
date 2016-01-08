@@ -1,0 +1,40 @@
+.icon{
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  top: 5px;
+  position: relative;
+}
+.icon-trash{
+  background-image: url(../icons/trash.png);
+  height: 20px;
+}
+.icon-refresh{
+  background-image: url(../icons/refresh.png);
+  width: 23px;
+  height: 23px;
+}
+.icon-reply{
+  background-image: url(../icons/reply.png);
+  width: 20px;
+}
+.icon-forward{
+  background-image: url(../icons/forward.png);
+  width: 20px;
+}
+.icon-edit{
+  background-image: url(../icons/edit.png);
+}
+.icon-view{
+  width: 19px;
+  background-image: url(../icons/view.png);
+}
+.icon-calendar{
+  background-image: url(../icons/calendar.png);
+}
+.icon-close{
+  background-image: url(../icons/close.png);
+  width: 18px;
+  height: 18px;
+}

@@ -1,0 +1,11 @@
+.simple-form {
+	font-size: $font-size-large;
+
+	.simple-form-input {
+		height: 40px;
+	}
+
+	.field-error {
+		color: $red;
+	}
+}

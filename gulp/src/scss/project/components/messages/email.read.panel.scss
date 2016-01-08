@@ -1,0 +1,21 @@
+.email-read-panel{
+  
+  dd, dt{
+    float: left;
+    margin-right: 5px;
+  }
+  dt{
+    clear: left;
+  }
+
+  .message-head, .message-body{
+    padding: 10px;
+    border: 1px solid $navbar-default-border;
+    background: $navbar-default-bg;
+    border-radius: $border-radius-base;
+    margin-bottom: 15px;
+  }
+  .message-body{
+    white-space: pre;
+  }
+}
