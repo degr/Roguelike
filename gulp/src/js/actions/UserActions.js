@@ -10,21 +10,16 @@ import Application from '~/Application';
 export default class UserActions {
 
 	static login(email, password) {
-
-        console.log('login', email, password);
 		UserService.login(email, password).then(
 			UserActions.onIsAuthorised
 		);
 	}
 
     static isExist(email) {
-
-        console.log('isAuthorised', email);
         return UserService.isExist(email);
     }
     
 	static register(email, password){
-        console.log('isAuthorised', email, password);
         UserService.register(email, password).then(
             function(response){
                 UserActions.onIsAuthorised({id: response, email: email, password: password})
@@ -34,15 +29,12 @@ export default class UserActions {
 	
 	
 	static isAuthorised() {
-
-        console.log('isAuthorised');
 		UserService.isAuthorised().then(
             UserActions.onIsAuthorised
         );
 	}
 	
 	static logout(){
-        console.log('logout');
         UserService.logout().then(function(){
 		    UserActions.onIsAuthorised({
                 id: null,
@@ -51,7 +43,6 @@ export default class UserActions {
 	}
 	
 	static anonimousSession(){
-        console.log('anonimousSession');
         UserService.logout().then(function(){
             UserActions.onIsAuthorised({
                     id: 0,
@@ -60,7 +51,6 @@ export default class UserActions {
 	}
 
 	static onIsAuthorised(response) {
-        console.log('onIsAuthorised', response);
 		appDispatcher.dispatch({
 			type: 'user-profile/login',
 			data: response
@@ -74,6 +64,5 @@ export default class UserActions {
                 Application.openPage(LoginPage);
 			}
 		}
-		
 	}
 }

@@ -12,6 +12,7 @@ import E404 from '~/components/page/errors/404';
 import HomePage from '~/components/page/HomePage';
 import LoginPage from '~/components/page/login/LoginPage';
 import LogoutPage from '~/components/page/login/LogoutPage';
+import NewPersonPage from '~/components/page/person/NewPersonPage';
 import ForgotPasswordPage from '~/components/page/login/ForgotPasswordPage'
 
 class ReactApp extends Component {
@@ -38,6 +39,7 @@ class ReactApp extends Component {
 			<Route path={LogoutPage.URL} component={LogoutPage} />
 			<Route path={ForgotPasswordPage.URL} component={ForgotPasswordPage} />
             <Route path={HomePage.URL} component={HomePage}>
+				<Route path={NewPersonPage.URL} component={NewPersonPage} />
 				<Route path="*" component={E404} />
 			</Route>
         </Router>;

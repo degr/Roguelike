@@ -1,9 +1,13 @@
-package org.forweb.roguelike.entity.utils;
+package org.forweb.roguelike.entity.person;
 
-/**
- * Created by Ror on 03.01.2016.
- */
-public class Statistics {
+import org.forweb.roguelike.entity.AbstractEntity;
+
+import javax.persistence.Entity;
+
+
+@Entity
+public class Statistics extends AbstractEntity{
+    
     public Statistics(Integer strength, Integer endurance, Integer dexterity, Integer willpower, Integer intelligence, Integer perception, Integer charisma, Integer luck) {
         this.strength = strength;
         this.endurance = endurance;
@@ -14,7 +18,7 @@ public class Statistics {
         this.charisma = charisma;
         this.luck = luck;
     }
-
+    
     private Integer strength;
     private Integer endurance;
     private Integer dexterity;

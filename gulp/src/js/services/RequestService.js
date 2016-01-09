@@ -21,11 +21,9 @@ export default class RequestService {
 	}
 
 	static sendRequest(url, data){
-		let out = post(url, data);
-		return out;
+		return post(url, data);
 	}
 	sendRequest(url, data) {
-		let out = post(url, data);
-		return out;
+		return post(url, data);
 	}
 }

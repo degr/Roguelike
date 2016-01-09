@@ -28,14 +28,7 @@ public class UserUtils {
     public static String SESSION_KEY_USER_ID = "userId";
 
     public static Integer getUserId() {
-        return getUserId(getSession());
-    }
-    
-    public static Integer getUserId(HttpSession session) {
-        if(session == null) {
-            return null;
-        }
-        Object out = session.getAttribute(SESSION_KEY_USER_ID);
+        Object out = Utils.getSession().getAttribute(SESSION_KEY_USER_ID);
         if(out == null) {
             return null;
         } else if(out instanceof Integer) {
@@ -46,11 +39,7 @@ public class UserUtils {
     }
 
     public static void setUserId(Integer userId) {
-        getSession().setAttribute(SESSION_KEY_USER_ID, userId);
+        Utils.getSession().setAttribute(SESSION_KEY_USER_ID, userId);
     }
     
-    public static HttpSession getSession() {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        return attr.getRequest().getSession(true); // true == allow create
-    }
 }

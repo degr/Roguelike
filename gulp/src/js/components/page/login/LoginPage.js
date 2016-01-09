@@ -55,19 +55,19 @@ class LoginPage extends React.Component {
                       value={this.state.password.value}
                       errors={this.state.password.errors} 
                       name='password'
-                      validations='required length:6:20'/> :
+                      rules='required length:6:20'/> :
                 <PasswordGenerator 
                     label='Your Password'
                     value={this.state.password.value}
                     errors={this.state.password.errors}
                     name='password'
-                    validations='required length:6:20'/>;
+                    rules='required length:6:20'/>;
         return (
             <div className="login-box" id="login-box">
                 <p className='login-error'>{this.state.profile.get('message')}</p>
                 <Form className='login-form' submit={this.submitLogin.bind(this)} onCollectValues={this.onCollectValues.bind(this)}>
                     <Text label='Your email' name='email' value={this.state.email.value}
-                          errors={this.state.email.errors} validations='required' />
+                          errors={this.state.email.errors} rules='required' />
                     {password}
                     <FormControl>
                         <Link to={ForgotPasswordPage.URL} className="btn btn-warning">Forgot pass</Link>
@@ -110,7 +110,6 @@ class LoginPage extends React.Component {
     }
     
     onCollectValues(name, value, errors){
-        let model = $.extend(this.state[name]);
         let state = {};
         state[name] = {
             value: value,

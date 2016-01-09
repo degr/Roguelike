@@ -1,25 +1,15 @@
 import React from 'react';
 import $ from 'jquery';
-import AbstractInput from './AbstractInput.js'
+import Text from './AbstractInput.js'
 
-export default class Select extends AbstractInput{
-    render(){
-        var group = this.buildOptionsGroup(this.props.options);
-        var label = this.props.noLabel !== false ?
-            (this.buildLabel(this.props.attr ? this.props.attr.id : null, this.getLabelValue())) :
-            null;
-        
-        var className = 'formfield-holder formfield-select' +
-            (this.props.className ? ' ' + this.props.className : '');
-        
-        return this.wrapInput(
-            <select {...this.props.attr} value={this.props.value} onChange={this.onChange.bind(this)}>{group}</select>,
-            label,
-            false,
-            className
-        );
+export default class Select extends Text{
+
+    buildInput(attributes){
+        return <select {...attributes} value={this.props.value} onChange={this.onChange.bind(this)}>
+            {this.buildOptionsGroup(this.props.options)}
+        </select>;
     }
-
+    
     buildOptionsGroup(options) {
         var out = [];
         for (var i = 0; i < options.length; i++) {
@@ -30,5 +20,8 @@ export default class Select extends AbstractInput{
     }
     onChange(event) {
         this.setValue(event.target.value);
+        if(this.props.onChange) {
+            this.props.onChange(event);
+        }
     }
 }

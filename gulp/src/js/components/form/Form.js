@@ -1,61 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
 import Validation from './Validation.js';
-/*
-example:
- var inputs = [
- {
- type: "text",
- label: 'Your email',
- name: "email",
- attr: {},
- formfield: "default",
- validations: "isEmail",
- errorMessages: "This is not a valid email",
- //required: true
- },
- {
- type: "select",
- label: "Choose your gender",
- name: "gender",
- attr: {},
- formfield: "default",
- options: [{label: 'male', value: 'm'}, {label: 'female', value: 'f'}],
- required: true
- },
- {
- type: "radio",
- name: "smoker",
- label: "Are you smoker?",
- attr: {},
- formfield: "default",
- options: [{label: 'smoker', value: 'y'}, {label: 'no smoker', value: 'n'}]
- },
- {
- type: "checkboxes",
- name: "smoker1",
- label: "Are you smoker?",
- attr: {},
- formfield: "default",
- options: [{label: 'smoker', value: 'y'}, {label: 'no smoker', value: 'n'}]
- },
- {
- type: "checkbox",
- name: "isCool",
- label: "Are you cool?",
- attr: {},
- formfield: "default"
- },
- {
- type: "textarea",
- name: "description",
- label: "Some data about you",
- attr: {},
- formfield: "default"
- }
- ];
-<Form inputs={inputs} submit={function(model){console.log(model);}} formfields={{}} />
-*/
 
 export default class Form extends React.Component {
     submit(e) {
@@ -127,12 +72,20 @@ export default class Form extends React.Component {
             return null;
         }
         return children.map((child, key) => {
-            return React.cloneElement(child, {
+            let params = {
                 key: key,
                 ref: key,
                 formId: this.props.id,
                 onSetValue: this.collectValues.bind(this)
-            });
+            };
+            if(this.props.model) {
+                let data = this.props.model[child.name];
+                if(data) {
+                    params.value = data.value;
+                    params.errors = data.errors;
+                }
+            }
+            return React.cloneElement(child, params)
         });
     }
     

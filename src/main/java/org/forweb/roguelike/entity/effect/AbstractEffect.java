@@ -1,87 +1,81 @@
-package org.forweb.roguelike.entity;
+package org.forweb.roguelike.entity.effect;
 
+import org.forweb.roguelike.entity.AbstractEntity;
+
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 import java.time.Instant;
 
-public class Effect extends AbstractEntity {
+@MappedSuperclass
+@Table(name = "effect")
+public abstract class AbstractEffect extends AbstractEntity {
 
-    public Effect() {
-	super();
+    public enum Action {
+        stat, skill, hitPoints, common, special;
     }
-
-    public Effect(String name, Instant activeTo, Action action, int modifier, String target, boolean visible,
-	    String description) {
-	super();
-	this.name = name;
-	this.activeTo = activeTo;
-	this.action = action;
-	this.modifier = modifier;
-	this.target = target;
-	this.visible = visible;
-	this.description = description;
-    }
-
+    
     private String name;
     private Instant activeTo;
     private Action action;
-    private int modifier;
+    private Integer modifier;
     private String target;
-    private boolean visible;
+    private Boolean visible;
     private String description;
 
     public final String getName() {
-	return name;
+        return name;
     }
 
     public final void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     public final Instant getActiveTo() {
-	return activeTo;
+        return activeTo;
     }
 
     public final void setActiveTo(Instant activeTo) {
-	this.activeTo = activeTo;
+        this.activeTo = activeTo;
     }
 
     public final Action getAction() {
-	return action;
+        return action;
     }
 
     public final void setAction(Action action) {
-	this.action = action;
+        this.action = action;
     }
 
     public final int getModifier() {
-	return modifier;
+        return modifier;
     }
 
     public final void setModifier(int modifier) {
-	this.modifier = modifier;
+        this.modifier = modifier;
     }
 
     public final String getTarget() {
-	return target;
+        return target;
     }
 
     public final void setTarget(String target) {
-	this.target = target;
+        this.target = target;
     }
 
     public final boolean isVisible() {
-	return visible;
+        return visible;
     }
 
     public final void setVisible(boolean visible) {
-	this.visible = visible;
+        this.visible = visible;
     }
 
     public final String getDescription() {
-	return description;
+        return description;
     }
 
     public final void setDescription(String description) {
-	this.description = description;
+        this.description = description;
     }
 
 }
