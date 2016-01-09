@@ -27,7 +27,7 @@ export default class AbstractInput extends React.Component{
     }
     
     validate(value){
-        return Validation.validate(value, this.props.validations);
+        return Validation.validate(value, this.props.rules);
     }
 
     findErrorMessage(errorKeys) {
@@ -70,9 +70,9 @@ export default class AbstractInput extends React.Component{
             (this.props.type ? this.props.type : this.getInputType()) +
             (this.props.className ? ' ' + this.props.className : ''));
 
-        if(this.props.validations) {
-            if((typeof this.props.validations === 'string' && this.props.validations.indexOf('required') > -1)
-                || this.props.validations.required !== undefined
+        if(this.props.rules) {
+            if((typeof this.props.rules === 'string' && this.props.rules.indexOf('required') > -1)
+                || this.props.rules.required !== undefined
             ) {
                 className0 += ' required';
             }
