@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import React from 'react';
-import {Modal} from './Modal.js';
+import Modal from './Modal.js';
 
 const NOTIFICATION_STYLES = {
     overlay: {
@@ -21,7 +21,7 @@ const NOTIFICATION_STYLES = {
 /*
  <Notification isOpen={true} closeTimeoutMS="3000">Some data here</Notification>
  */
-export class Notification extends React.Component {
+export default class Notification extends React.Component {
     set mountTime(mountTime) {this._mountTime = mountTime}
     get mountTime() {return this._mountTime}
 

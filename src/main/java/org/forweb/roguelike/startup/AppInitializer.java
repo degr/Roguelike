@@ -1,5 +1,6 @@
 package org.forweb.roguelike.startup;
 
+import org.forweb.roguelike.startup.SpringConfiguration;
 import org.springframework.orm.hibernate4.support.OpenSessionInViewFilter;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.web.WebApplicationInitializer;
@@ -21,7 +22,7 @@ public class AppInitializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext container) {
-
+        System.out.println("on startup");
 
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
         rootContext.register(SpringConfiguration.class);
@@ -29,7 +30,6 @@ public class AppInitializer implements WebApplicationInitializer {
         container.addListener(new ContextLoaderListener(rootContext));
 
         addServlet(new DispatcherServlet(rootContext), "dispatcher", "/server/*", container);
-
 
         /*container.addFilter("openSessionInViewFilter", openSessionInViewFilter())
                 .addMappingForUrlPatterns(null, false, "/*");

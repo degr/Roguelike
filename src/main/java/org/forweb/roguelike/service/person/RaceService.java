@@ -3,6 +3,7 @@ package org.forweb.roguelike.service.person;
 import org.apache.commons.lang3.StringUtils;
 import org.forweb.roguelike.entity.person.Race;
 import org.forweb.roguelike.utils.ClassUtils;
+import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Service
 public class RaceService {
 
     private Map<String, Race> races;

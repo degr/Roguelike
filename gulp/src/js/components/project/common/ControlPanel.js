@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-export class ControlPanel extends React.Component{
+export default class ControlPanel extends React.Component{
     render(){
         var leftMenu = this.buildMenu(this.props.leftItems, 'nav items');
         var rightMenu = this.buildMenu(this.props.rightItems, 'nav items navbar-right');

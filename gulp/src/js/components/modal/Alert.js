@@ -1,7 +1,7 @@
-import {AbstractConfirmation} from './AbstractConfirmation.js';
+import AbstractConfirmation from './AbstractConfirmation.js';
 import React from 'react';
 import $ from 'jquery';
-import {ControlPanel} from '../../components/project/common/ControlPanel.js';
+import ControlPanel from '~/components/project/common/ControlPanel.js';
 
 /*
  <Alert isOpen={this.state.alertOpen} callback={this.alertClb.bind(this)} title="Alert">

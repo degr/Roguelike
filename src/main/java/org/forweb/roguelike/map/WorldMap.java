@@ -1,21 +1,22 @@
 package org.forweb.roguelike.map;
 
-/**
- * Created by Ror on 03.01.2016.
- */
 public class WorldMap {
     private Cell[][] map;
     
     public void add(int x, int y, Cell cell) {
         map[y][x] = cell;
     }
-    
+
     public WorldMap(int x, int y) {
         map = new Cell[y][x];
     }
+    public WorldMap(Cell[][] data) {
+        map = data;
+    }
     
     public Cell[][] getRound(int centerX, int centerY, int radius){
-        Cell[][] out = getQuadrant(centerX - radius, centerY - radius, radius * 2 + 1);
+        Cell[][] out = getSquare(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
+        
         for(int i = 0; i < out.length; i++) {
             int catet1Length = calculateCatet(i, radius);
             for(int j = 0; j < out[i].length; j++) {
@@ -70,10 +71,6 @@ public class WorldMap {
             y++;
         }
         return out;
-    }
-    
-    public Cell[][] getQuadrant(int xLeft, int yTop, int size){
-        return getSquare(xLeft, yTop, xLeft + size, yTop + size);
     }
 }
 

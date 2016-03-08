@@ -1,11 +1,11 @@
 import React from 'react';
 import $ from 'jquery';
 
-import {Modal} from './Modal.js';
-import {ControlPanel} from '../../components/project/common/ControlPanel.js';
+import Modal from './Modal.js';
+import ControlPanel from '../../components/project/common/ControlPanel.js';
 import keyboardListener from '~/components/project/KeyboardListener.js';
 
-export class AbstractConfirmation extends React.Component {
+export default class AbstractConfirmation extends React.Component {
     
     enterButtonListner = null;
     escButtonListner = null;

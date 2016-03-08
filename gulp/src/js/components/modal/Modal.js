@@ -19,7 +19,7 @@ const MODAL_STYLES = {
 /**
  * @property className string, [medium, large]
  */
-export class Modal extends React.Component{
+export default class Modal extends React.Component{
     render(){
         var style;
         if(this.props.extendStyles === false) {

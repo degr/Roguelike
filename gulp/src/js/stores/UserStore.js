@@ -1,5 +1,5 @@
+import $ from 'jquery';
 import {ReduceStore} from 'flux/utils';
-import {Map} from 'immutable';
 import appDispatcher from '~/dispatcher/AppDispatcher'
 
 export const LOGGED_IN = 'loggedIn';
@@ -8,14 +8,14 @@ export const USER_PROFILE = 'userProfile';
 class UserStore extends ReduceStore {
 
     getInitialState() {
-        return new Map({
+        return {
             userProfile: {},
             loggedIn: false
-        });
+        };
     }
 
     isWaitForLogin() {
-        return !this.getState().toObject().loggedIn;
+        return !this.getState().loggedIn;
     }
 
     reduce(state, action) {
@@ -34,23 +34,21 @@ class UserStore extends ReduceStore {
     }
     
     getUserId(){
-        return this.getState().get(USER_PROFILE).id;
+        return this.getState()[USER_PROFILE].id;
     }
     getEmail(){
-        return this.getState().get(USER_PROFILE).email;
+        return this.getState()[USER_PROFILE].email;
     }
     isLoggedIn(){
-        return this.getState().get(LOGGED_IN);
+        return this.getState()[LOGGED_IN];
     }
 }
 
 //returns state
 let processUserLogin = (currentState, response) => {
-    let loggedIn = response.id !== null;
-    console.log('user store', loggedIn, response);
-    return currentState.
-            set(LOGGED_IN, loggedIn).
-            set(USER_PROFILE, response);
+    currentState[LOGGED_IN] = response.id !== null;
+    currentState[USER_PROFILE] = response;
+    return $.extend({}, currentState)
 };
 
 export default new UserStore(appDispatcher);

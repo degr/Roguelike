@@ -45,13 +45,17 @@ body, input, textarea, select{
   @include font-large();
 }
 
-.color-base, a{
+.color-base{
   color: $theme-color;
 }
 a{
+  &, &:active, &:visited {
+    color: $theme-link-color;
+  }
   text-decoration: none;
   &:hover{
     text-decoration: none;
+    color: $theme-link-color-hover;
   }
 }
 .color-red{
@@ -94,4 +98,7 @@ ul, li, dl{
 
 .m-15{
   margin-bottom: 15px;
+}
+.width-100{
+  width: 100px;
 }

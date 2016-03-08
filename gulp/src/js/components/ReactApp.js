@@ -15,41 +15,52 @@ import LogoutPage from '~/components/page/login/LogoutPage';
 import NewPersonPage from '~/components/page/person/NewPersonPage';
 import ForgotPasswordPage from '~/components/page/login/ForgotPasswordPage'
 
+import MapsPage from '~/components/page/map/MapsPage'
+import MapObjectsPage from '~/components/page/map/MapObjectsPage'
+import EnvironmentsPage from '~/components/page/map/EnvironmentsPage'
+
+
+
 class ReactApp extends Component {
 
-	static getStores() {
-		return [UserStore];
-	}
+    static getStores() {
+        return [UserStore];
+    }
 
-	static calculateState(prevState) {
-		return {
-			profile: UserStore.getState()
-		};
-	}
+    static calculateState(prevState) {
+        return {
+            profile: UserStore.getState()
+        };
+    }
 
-	constructor() {
-		super();
+    constructor() {
+        super();
 
-		Modal.setAppElement("#modalWrapper");
-	}
+        Modal.setAppElement("#modalWrapper");
+    }
     
-	render() {
-		return <Router history={history}>
-			<Route path={LoginPage.URL} component={LoginPage} />
-			<Route path={LogoutPage.URL} component={LogoutPage} />
-			<Route path={ForgotPasswordPage.URL} component={ForgotPasswordPage} />
+    render() {
+        return <Router history={history}>
+            <Route path={LoginPage.URL} component={LoginPage} />
+            <Route path={LogoutPage.URL} component={LogoutPage} />
+            <Route path={ForgotPasswordPage.URL} component={ForgotPasswordPage} />
             <Route path={HomePage.URL} component={HomePage}>
-				<Route path={NewPersonPage.URL} component={NewPersonPage} />
-				<Route path="*" component={E404} />
-			</Route>
+                <Route path={NewPersonPage.URL} component={NewPersonPage} />
+                
+                <Route path={MapsPage.URL} component={MapsPage} />
+                <Route path={MapObjectsPage.URL} component={MapObjectsPage} />
+                <Route path={EnvironmentsPage.URL} component={EnvironmentsPage} />
+                
+                <Route path="*" component={E404} />
+            </Route>
         </Router>;
-	}
+    }
 
-	componentDidMount() {
-		if (UserStore.isWaitForLogin()) {
-			UserActions.isAuthorised();
-		}
-	}
+    componentDidMount() {
+        if (UserStore.isWaitForLogin()) {
+            UserActions.isAuthorised();
+        }
+    }
 }
 
 const ReactAppContainer = Container.create(ReactApp);

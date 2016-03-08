@@ -53,7 +53,7 @@ $menu-background-color: #40464B;
     
     
     &:hover{
-      background-color: $color-theme-selection;
+      background-color: $theme-color-selection;
     }
     /*&:first-child:before{
       display: none;
@@ -117,7 +117,7 @@ $menu-background-color: #40464B;
         text-decoration: none;
       }
       &.active, &.active a, &:hover, &:hover a {
-        background: $color-theme-selection;
+        background: $theme-color-selection;
       }
     }
   }

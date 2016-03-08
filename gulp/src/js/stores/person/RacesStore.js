@@ -24,4 +24,4 @@ class RacesStore extends ReduceStore {
 }
 
 
-export default new NewPersonPageStore(appDispatcher);
+export default new RacesStore(appDispatcher);

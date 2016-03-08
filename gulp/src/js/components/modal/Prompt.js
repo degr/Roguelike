@@ -1,8 +1,8 @@
-import {AbstractConfirmation} from './AbstractConfirmation.js';
+import AbstractConfirmation from './AbstractConfirmation.js';
 import React from 'react';
 import $ from 'jquery';
-import {ControlPanel} from '../../components/project/common/ControlPanel.js';
-import {Text} from '../../components/form/input/Text.js';
+import ControlPanel from '../../components/project/common/ControlPanel.js';
+import Text from '../../components/form/input/Text.js';
 
 /*
  <Prompt title="Prompt" question="Enter your name"

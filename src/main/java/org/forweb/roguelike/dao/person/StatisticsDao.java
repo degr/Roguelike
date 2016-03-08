@@ -9,13 +9,9 @@ import java.util.List;
 
 public interface StatisticsDao extends AbstractDao<Statistics> {
 
-    @Query("select * from statistics where type = 'race' and refid = :raceId")
+    @Query("select s from Statistics as s where type = 'race' and refid = :raceId")
     List<Statistics> getStatisticsForRace(@Param("raceId") Integer raceId);
     
-    @Query("select * from statistics where type = 'person' and refid = :personId")
+    @Query("select s from Statistics as s where type = 'person' and refid = :personId")
     Statistics getStatisticsForPerson(@Param("personId") Integer personId);
-
-
-
-
 }

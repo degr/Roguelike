@@ -2,6 +2,7 @@ package org.forweb.roguelike.map;
 
 
 import org.forweb.roguelike.effects.Effect;
+import org.forweb.roguelike.entity.map.MapObject;
 
 import java.util.List;
 

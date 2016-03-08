@@ -2,24 +2,26 @@ package org.forweb.roguelike.entity.person;
 
 import org.forweb.roguelike.entity.AbstractEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Person extends AbstractEntity {
 
     public enum Gender {
-        MALE, FEMALE, UNDIFFERENTIATED
+        MALE, FEMALE, UNDIFFERENTIATED;
     }
 
+    private Integer userId;
+
+    @Enumerated()
     private Gender gender;
+    
     private String name;
     private String race;
-    private Integer hitPoints;
+    /*private Integer hitPoints;
     @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
-    private List<Statistics> statistics;
+    private List<Statistics> statistics;*/
     private Integer experience;
 
     public Integer getExperience() {
@@ -55,7 +57,7 @@ public class Person extends AbstractEntity {
     public String getRace() {
         return race;
     }
-
+/*
     public List<Statistics> getStatistics() {
         return statistics;
     }
@@ -70,6 +72,13 @@ public class Person extends AbstractEntity {
 
     public void setHitPoints(Integer hitPoints) {
         this.hitPoints = hitPoints;
+    }*/
+    
+    public Integer getUserId() {
+        return userId;
     }
 
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 }

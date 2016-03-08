@@ -1,53 +1,47 @@
 import React from 'react';
-import $ from 'jquery';
-import Validation from './Validation.js';
 
-export default class Form extends React.Component {
+import ChildModifier from './ChildModifier.js';
+
+export default class Form extends ChildModifier {
     submit(e) {
         if(typeof this.props.submit === 'function') {
             if(e)e.preventDefault();
-            var errors = null;
+            var errors = {};
             var onError = false;
             var model = {};
+
             if(this.refs) {
                 for(let r in this.refs){
                     let child = this.refs[r];
-                    if(!child.getInputState)continue;
-                    let {value, errorMessages, errorKeys} = child.getInputState(child.getValue());
-                    model[child.props.name] = value;
-                    if(errorKeys && errorKeys.length) {
-                        if(errors === null)errors = {};
-                        if(!onError)onError = true;
-                        errors[child.props.name] = errorMessages;
+                    if(child.getInputState) {
+                        if(Form.onSubmitField(child.getInputState(child.getValue()), child.props.name, model, errors) && !onError){
+                            onError = true;
+                        }
+                    }
+                    if(child.getAggregateState) {
+                        let aggregate = child.getAggregateState();
+                        for(let aKey in aggregate) {
+                            if(Form.onSubmitField(aggregate[aKey], aKey, model, errors) && !onError){
+                                onError = true;
+                            }
+                        }
                     }
                 }
             }
-            this.props.submit(model, onError, errors);
+            this.props.submit(model, onError, onError ? errors : null, e);
         }
     }
-    findErrorMessage(fieldName, errorKeys) {
-        var errors = [];
-        for(var fIndex = 0; fIndex < this.props.fields.length; fIndex++) {
-            var current = this.props.fields[fIndex];
-            if(current.name !== fieldName)continue;
-            for(var i = 0; i < errorKeys.length; i++) {
-                var message = null;
-                if (typeof current.errorMessages === 'string' && current.errorMessages.length > 0) {
-                    message = current.errorMessages;
-                } else if (typeof current.errorMessages === 'object') {
-                    message = current.errorMessages[errorKeys[i]] ? current.errorMessages[errorKeys[i]] : null;
-                }
-                if (message === null) {
-                    message = Validation.messages[errorKeys[i]] ?
-                        Validation.messages[errorKeys[i]] : Validation.messages['default'];
-                }
-                if (errors.indexOf(message) === -1) {
-                    errors.push(message);
-                }
-            }
+
+    static onSubmitField(field, key, model, errors){
+        let {value, errorMessages, errorKeys} = field;
+        model[key] = value;
+        if (errorKeys && errorKeys.length) {
+            errors[key] = errorMessages;
+            return true;
         }
-        return errors;
+        return false;
     }
+
     render() {
         return (<form onSubmit={this.submit.bind(this)} className={this.props.className} id={this.props.id}>
             {this.props.contentBefore}
@@ -57,38 +51,27 @@ export default class Form extends React.Component {
         </form>);
     }
 
-    renderChildren() {
-        if (!this.props.children)return null;
-        let out = [];
 
-        let children;
-        if (React.isValidElement(this.props.children)) {
-            children = [this.props.children]
-        } else if (this.props.children && this.props.children.length) {
-            children = this.props.children;
-        } else if (this.props.children) {
-            throw 'Unknown chldrens format in form';
-        } else {
-            return null;
+    cloneChild(child, key){
+        if(!child.props || child.props.noClone) {
+            return child;
         }
-        return children.map((child, key) => {
-            let params = {
-                key: key,
-                ref: key,
-                formId: this.props.id,
-                onSetValue: this.collectValues.bind(this)
-            };
-            if(this.props.model) {
-                let data = this.props.model[child.name];
-                if(data) {
-                    params.value = data.value;
-                    params.errors = data.errors;
-                }
-            }
-            return React.cloneElement(child, params)
-        });
+        let newProps = {
+            formId: this.props.id
+        };
+        if(this.props.model)newProps._formModel = this.props.model;
+        if(this.props.errors)newProps._formErrors = this.props.errors;
+        if(this.props.errorMessages)newProps._formErrorMessages = this.props.errorMessages;
+        newProps.ref = key;
+        newProps.key = key;
+        if(child.props.onSetValue === undefined)newProps.onSetValue = this.collectValues.bind(this);
+        if(child.props.value === undefined && this.props.model)newProps.value = this.props.model[child.props.name];
+        if(child.props.errors === undefined && this.props.errors)newProps.errors = this.props.errors[child.props.name];
+        if(child.props.errorMessages === undefined && this.props.errorMessages)newProps.errorMessages = this.props.errorMessages[child.props.name];
+        return React.cloneElement(child, newProps);
     }
-    
+
+
     collectValues(name, value, errorMessages, errorKeys, event){
         if(typeof this.props.onCollectValues === 'function') {
             this.props.onCollectValues(name, value, errorMessages, errorKeys, event);

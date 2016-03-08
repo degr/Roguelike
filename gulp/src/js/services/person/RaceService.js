@@ -1,9 +1,9 @@
 import RequestService from "~/services/RequestService";
 
-class PersonCreationService extends RequestService {
+class RaceService extends RequestService {
     loadRaces(){
-        return this.sendRequest("person/get-races", null);
+        return this.post("person/get-races", null);
     }
 }
 
-export default new UserService();
+export default new RaceService();

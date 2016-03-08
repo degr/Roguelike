@@ -3,7 +3,6 @@ package org.forweb.roguelike.factory;
 import org.forweb.roguelike.map.Cell;
 import org.forweb.roguelike.map.Floor;
 import org.forweb.roguelike.map.WorldMap;
-import org.forweb.roguelike.map.object.Tree;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +31,7 @@ public class WorldFactory {
             for(int j = 0; j < x; j++) {
                 Cell cell = new Cell(floor);
                 if(objects.containsKey(j)) {
-                    cell.setMapObject(new Tree(objects.get(j)));
+                    //cell.setMapObject(new Tree(objects.get(j)));
                 }
                 out.add(i, j, cell);
             }

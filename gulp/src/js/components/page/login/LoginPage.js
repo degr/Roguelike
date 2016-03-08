@@ -55,16 +55,16 @@ class LoginPage extends React.Component {
                       value={this.state.password.value}
                       errors={this.state.password.errors} 
                       name='password'
-                      rules='required length:6:20'/> :
+                      rules='required length:5:20'/> :
                 <PasswordGenerator 
                     label='Your Password'
                     value={this.state.password.value}
                     errors={this.state.password.errors}
                     name='password'
-                    rules='required length:6:20'/>;
+                    rules='required length:5:20'/>;
         return (
             <div className="login-box" id="login-box">
-                <p className='login-error'>{this.state.profile.get('message')}</p>
+                <p className='login-error'>{this.state.profile.message}</p>
                 <Form className='login-form' submit={this.submitLogin.bind(this)} onCollectValues={this.onCollectValues.bind(this)}>
                     <Text label='Your email' name='email' value={this.state.email.value}
                           errors={this.state.email.errors} rules='required' />

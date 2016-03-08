@@ -6,7 +6,7 @@ import { render } from 'react-dom';
 import Modal from 'react-modal';
 import history from '~/components/history/History.js';
 import Profile from '../../Profile';
-import {HomePage} from '~/components/page/HomePage.js';
+import HomePage from '~/components/page/HomePage.js';
 import userProfileRS from './services/UserService'
 
 $.ajaxSetup({

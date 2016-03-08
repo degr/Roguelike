@@ -5,6 +5,8 @@ import org.forweb.roguelike.entity.AbstractEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.util.List;
+
 
 /**
  * Created by Ror on 03.01.2016.
@@ -43,10 +45,10 @@ public class AbstractService<T extends AbstractEntity, D extends AbstractDao<T>>
         return (int)dao.count();
     }
 
-    public Iterable<T> findAll(){
+    public List<T> findAll(){
         return dao.findAll();
     }
-    public Iterable<T> findAll(Iterable<Integer> ids){
+    public List<T> findAll(Iterable<Integer> ids){
         return dao.findAll(ids);
     }
     

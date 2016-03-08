@@ -12,13 +12,17 @@ $icon-font-path: "../fonts/bootstrap/";
 $white: white;
 $black: #1b1b1b;
 $red: #CE2B2B;
-$theme-color: #157C8E;
-$theme-color-light: #2C9FB3;
+$theme-color-dark: #ff0408;
+$theme-color: #ff8097;
+$theme-color-light: #db8888;
+$theme-color-lighter: #ffdfdf;
+$theme-color-selection: #FFCC73;
+$theme-link-color: #2F6CCC;
+$theme-link-color-hover: $red;
 $green: #8FC95A;
 $blue: #2a87c9;
 $yellow: #FFC33D;
 
-$color-theme-selection: #C7EDF4;
 
 //override bootstrap colors
 $gray-base:              $black;

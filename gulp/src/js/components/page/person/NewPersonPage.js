@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from 'flux/utils';
+import {Container} from 'flux/utils';
 
 import AbstractPage from '~/components/page/AbstractPage';
 

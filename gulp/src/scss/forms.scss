@@ -74,21 +74,7 @@ textarea{
     margin: 0;
   }
 }
-input[type="checkbox"]{
-  display:none !important;
-}
-input[type="checkbox"] + span {
-  padding-left: 20px;
-  display:inline-block;
-  min-width:16px;
-  min-height:16px;
-  vertical-align:middle;
-  background:url(../images/form/checkbox-unchecked.png) 0 2px no-repeat;
-  cursor:pointer;
-}
-input[type="checkbox"]:checked + span{
-  background:url(../images/form/checkbox-checked.png) 0 2px no-repeat;
-}
+
 form{
   .control {
     > * {

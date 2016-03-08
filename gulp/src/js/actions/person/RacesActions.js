@@ -4,7 +4,7 @@ import RequestService from "~/services/RequestService";
 
 export default {
     loadRaces(){
-        RequestService.sendRequest("person/get-races").then((v) => {
+        RequestService.post("person/get-races").then((v) => {
             appDispatcher.dispatch({
                 type: 'get-races',
                 data: v

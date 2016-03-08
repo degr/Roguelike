@@ -1,5 +1,11 @@
 package org.forweb.roguelike.startup;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.deser.std.NumberDeserializers;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.forweb.roguelike.utils.BooleanDeserializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -21,10 +27,10 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -102,11 +108,18 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter {
 
     @Bean(name="jacksonBuilder")
     public Jackson2ObjectMapperBuilder jacksonBuilder() {
-        Jackson2ObjectMapperBuilder b = new Jackson2ObjectMapperBuilder();
-        b.indentOutput(true).dateFormat(new SimpleDateFormat("yyyy-MM-dd"));
-        return b;
+        
+        BooleanDeserializer booleanDeserializer = new BooleanDeserializer();
+        Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder = new Jackson2ObjectMapperBuilder();
+        jackson2ObjectMapperBuilder
+                .indentOutput(true)
+                .dateFormat(new SimpleDateFormat("yyyy-MM-dd"))
+                .deserializerByType(Boolean.class, booleanDeserializer)//do not work
+                .deserializerByType(boolean.class, booleanDeserializer);//do not work
+        
+        return jackson2ObjectMapperBuilder;
     }
-
+    
     @Bean(name = "validator")
     public LocalValidatorFactoryBean validator() {
         LocalValidatorFactoryBean out = new LocalValidatorFactoryBean();

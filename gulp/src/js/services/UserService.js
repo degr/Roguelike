@@ -3,29 +3,29 @@ import RequestService from "./RequestService";
 class UserService extends RequestService {
 
     logout() {
-        return this.sendRequest("user/logout", null);
+        return this.post("user/logout", null);
     }
     
 	isAuthorised() {
-		return this.sendRequest("user/is-authorised", null);
+		return this.post("user/is-authorised", null);
 	}
 
     login(email, password) {
-		return this.sendRequest("user/login", {
+		return this.post("user/login", {
 			email: email,
 			password: password
 		});
 	}
 
 	register(email, password) {
-		return this.sendRequest("user", {
+		return this.post("user", {
 			email: email,
 			password: password
 		});
 	}
 
     isExist(email) {
-        return this.sendRequest("user/get-by-email", {
+        return this.post("user/get-by-email", {
             email: email
         })
     }

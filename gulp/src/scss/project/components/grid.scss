@@ -1,54 +1,15 @@
 .grid-wrapper{
-  margin-bottom: 40px;//fix control panel absolute layout
-  .z-header .z-column-header.z-cell {
-    border-left: none;
-    height: 31px;
-    &:not(.z-first){
-      border-left: none;
+  margin-bottom: 15px;//fix control panel absolute layout
+  &.danger {
+    thead{
+      background: $red;
     }
-  }
-  .z-header-wrapper, .z-over,  .react-datagrid .z-column-header.z-over{
-    background: $theme-color-light;
-  }
-
-  .z-content{
-    padding: 7px 5px !important;
-  }
-  &.z-style-alternate .z-row {
-    &.z-odd {
-      background: $gray-lighter;
-    }
-    &.z-over, .z-over.z-odd{
-      background: $theme-color-light;
-    }
-  }
- 
-  .z-row{
-    height: auto !important;
   }
   .top-control, .columns-control{
     margin-bottom: 10px;
   }
-  
-  svg[name="gotoLast"],   svg[name="gotoFirst"], svg[name="refresh"] {
-    display: none;
-  }
-  .react-datagrid-pagination-toolbar{
-    @media #{$tablet} {
-      width: 70% !important;
-      bottom: -41px;
-      right: 0;
-      position: absolute;  
-    }
-    > :first-child{
-     min-width: 323px !important;
-    }
-  }
-  .react-datagrid {
-    margin-bottom: 6px;
-    .z-row .z-cell .z-content {
-      white-space: normal;
-    }
+  .datagrid {
+    overflow: auto;
   }
   .controls{
     > *{
@@ -61,8 +22,94 @@
       margin-right: 5px;
     }
   }
-  /*ie fix*/
-  .z-inner{
-    flex-basis: auto;
+  table{
+    //table-layout: fixed;
+    width: 100%;
+    border: 1px solid $theme-color-dark;
   }
+  thead {
+    background: $theme-color-light;
+  }
+  tr {
+    &.even {
+      background: $theme-color-lighter;
+    }
+  }
+  tbody tr:hover td{
+    background: $theme-color-selection;
+  }
+  td, th{
+    padding: 7px 5px;
+  }
+  th{
+    text-align: left;
+  }
+  .align-left{
+    text-align: left;
+  }
+  .align-right{
+    text-align: right;
+  }
+  .pagination{
+    float: right;
+    margin: 0;
+    margin-top: 5px;
+    > * {
+      float: left;
+    }
+
+    .text{
+      position: relative;
+      top: 3px;
+    }
+    .margin{
+      margin-right: 5px;
+    }
+  }
+  .page, .page-size{
+    .formfield-label {
+      width: initial;
+      float: left;
+      margin: 3px 10px 0;
+    }
+    .formfield-input{
+      float: left;
+      margin-right: 8px;
+      width: 50px;
+    }
+    label{
+      font-weight: normal;
+    }
+  }
+  .group-toggler{
+    position: relative;
+    a{
+      position: absolute;
+      top: 1px;
+    }
+    span {
+      padding-left: 20px;
+    }
+  }
+  .bottom-control{
+    position: absolute;
+    bottom: 18px;
+    left: $grid-gutter-width / 2;
+  }
+}
+td > .formfield-holder{
+  margin-bottom: 0;
+}
+td > .control {
+  text-align: center;
+  > .icon {
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    margin-right: 6px;
+    &.icon-edit{
+      top: 0;
+    }
+  }
+
 }

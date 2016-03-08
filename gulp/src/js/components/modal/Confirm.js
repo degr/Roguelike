@@ -1,11 +1,11 @@
-import {AbstractConfirmation} from './AbstractConfirmation.js';
+import AbstractConfirmation from './AbstractConfirmation.js';
 import React from 'react';
 /*
  <Confirm isOpen={this.state.confirmOpen} callback={this.confirmClb.bind(this)} title="Confirm">
     <div>Something here</div>
   </Confirm>
  */
-export class Confirm extends AbstractConfirmation{
+export default class Confirm extends AbstractConfirmation{
     onPositive(e){
         this.onCloseModal(e, true);
     }
