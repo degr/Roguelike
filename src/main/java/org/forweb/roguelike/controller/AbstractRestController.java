@@ -30,9 +30,6 @@ public class AbstractRestController<T extends AbstractEntity, D extends Abstract
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public Integer create(@RequestBody T item) throws BadHttpRequest {
-
-        MappingJackson2HttpMessageConverter m = new MappingJackson2HttpMessageConverter(null);
-        m.read(null, null, null)
         if(item.getId() == null) {
             service.save(item);
             return item.getId();
